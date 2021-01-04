@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyChats</string>
+    <string name="verify_number">Verify %s</string>
+    <string name="sms_message">Waiting to automatically detect an SMS\n to %s Wrong Number?</string>
+</resources>

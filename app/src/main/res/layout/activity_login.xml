@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:text="Welcome to MyChats"
+        android:textStyle="bold"
+        android:textColor="@color/DarkCyan"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/Chocolate"
+        android:textSize="20sp"
+        android:text="Verify your number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_margin="24dp"
+        android:text="Please enter your mobile number and you will get a SMS including a verification code"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            app:ccp_textSize="16sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_showNameCode="false"
+            app:ccp_contentColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/etMobileNumber"
+            android:hint="Enter phone number"
+            android:inputType="number"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="20sp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="Next"
+        android:enabled="false"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:textAllCaps="true"
+        app:cornerRadius="5dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

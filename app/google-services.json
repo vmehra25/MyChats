@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "830959111054",
+    "project_id": "mychats-c2400",
+    "storage_bucket": "mychats-c2400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830959111054:android:352f7466c1c2bc011172df",
+        "android_client_info": {
+          "package_name": "com.example.mychats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830959111054-mfs7hma3rlcb4li5prik0a5kupmu0mh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mychats",
+            "certificate_hash": "8d595e5eba4cb5ea14d1ad1ddbb166cbb1f05a08"
+          }
+        },
+        {
+          "client_id": "830959111054-5cnvri481nqtl2kfcfudqtf7km8m6b2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwITcI-XLMvymEm8VIPEu0eWpGMIFlBR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830959111054-5cnvri481nqtl2kfcfudqtf7km8m6b2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
