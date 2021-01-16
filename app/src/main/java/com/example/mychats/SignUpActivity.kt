@@ -5,16 +5,20 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlin.coroutines.Continuation
+import java.io.ByteArrayOutputStream
+
 
 class SignUpActivity : AppCompatActivity() {
     val storage by lazy{
@@ -41,12 +45,12 @@ class SignUpActivity : AppCompatActivity() {
             val write_permission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
             requestPermissions(
-                read_permission,
-                1001
+                    read_permission,
+                    1001
             )
             requestPermissions(
-                write_permission,
-                1002
+                    write_permission,
+                    1002
             )
 
         }else{
@@ -71,25 +75,41 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage(it:Uri){
+    private fun uploadImage(it: Uri){
         btnSubmitProfileInfo.isEnabled = false
         val ref = storage.reference.child("uploads/" + auth.uid.toString())
-        val uploadTask = ref.putFile(it)
-        uploadTask.addOnFailureListener {
+
+        val bmp = MediaStore.Images.Media.getBitmap(contentResolver, it)
+        val baos = ByteArrayOutputStream()
+        bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos)
+        val data: ByteArray = baos.toByteArray()
+        val uploadTask = ref.putBytes(data)
+
+
+        uploadTask.continueWithTask(com.google.android.gms.tasks.Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            return@Continuation ref.downloadUrl
+        }).addOnFailureListener {
             if(::progressDialog.isInitialized){
                 progressDialog.dismiss()
             }
             Toast.makeText(this@SignUpActivity, "Upload failed", Toast.LENGTH_SHORT).show()
-        }.addOnSuccessListener {
-            btnSubmitProfileInfo
+        }.addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                btnSubmitProfileInfo.isEnabled = true
+                downloadUrl = task.result.toString()
+                Log.d("URL", "Download url: $downloadUrl")
+                Toast.makeText(this@SignUpActivity, "Uploaded", Toast.LENGTH_SHORT).show()
+            }
+
             if(::progressDialog.isInitialized){
                 progressDialog.dismiss()
             }
-            Toast.makeText(this@SignUpActivity, "Uploaded", Toast.LENGTH_SHORT).show()
-        }.addOnProgressListener {
-            val progress = 100.0 * it.bytesTransferred / it.totalByteCount
-            progressDialog = createProgressDialog("Uploading: $progress", false)
-            progressDialog.show()
+
         }
     }
 }
