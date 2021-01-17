@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -27,6 +28,11 @@ class SignUpActivity : AppCompatActivity() {
     val auth by lazy{
         FirebaseAuth.getInstance()
     }
+
+    val db by lazy{
+        FirebaseFirestore.getInstance()
+    }
+
     lateinit var downloadUrl:String
     lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +41,24 @@ class SignUpActivity : AppCompatActivity() {
 
         userImageInput.setOnClickListener{
             checkPermissionForImage()
+        }
+
+        btnSubmitProfileInfo.setOnClickListener {
+            btnSubmitProfileInfo.isEnabled = false
+            if(etName.text.isEmpty()){
+                Toast.makeText(this, "Enter username", Toast.LENGTH_LONG).show()
+            }else if(!::downloadUrl.isInitialized){
+                Toast.makeText(this, "Choose picture", Toast.LENGTH_LONG).show()
+            }else{
+                val name = etName.text.toString()
+                val user = User(name, downloadUrl, downloadUrl, auth.uid!!)
+                db.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }.addOnFailureListener {
+                    btnSubmitProfileInfo.isEnabled = true
+                }
+            }
         }
     }
 
