@@ -3,7 +3,7 @@ package com.example.mychats.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.mychats.PeopleFragment
+import com.example.mychats.fragments.PeopleFragment
 import com.example.mychats.fragments.InboxFragment
 
 class ScreenSliderAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {

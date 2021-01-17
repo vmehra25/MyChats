@@ -1,4 +1,4 @@
-package com.example.mychats
+package com.example.mychats.fragments
 
 import androidx.fragment.app.Fragment
 
