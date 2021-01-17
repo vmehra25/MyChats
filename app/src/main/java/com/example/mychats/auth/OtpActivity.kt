@@ -1,5 +1,6 @@
-package com.example.mychats
+package com.example.mychats.auth
 
+import com.example.mychats.R
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -14,6 +15,7 @@ import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import com.example.mychats.auth.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -37,7 +39,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_otp)
+        setContentView(com.example.mychats.R.layout.activity_otp)
         initViews()
         startVerify()
     }

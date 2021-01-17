@@ -1,4 +1,4 @@
-package com.example.mychats
+package com.example.mychats.auth
 
 import android.Manifest
 import android.app.Activity
@@ -12,6 +12,9 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mychats.MainActivity
+import com.example.mychats.R
+import com.example.mychats.models.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
