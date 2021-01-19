@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_items.view.*
 
 class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    fun bind(user: User){
+    fun bind(user: User, onClick:(name:String, photo:String, uid:String) -> Unit){
         with(itemView){
             countTv.isVisible = false
             timeTv.isVisible = false
@@ -19,6 +19,10 @@ class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
                     .placeholder(R.drawable.flag_india)
                     .error(R.drawable.flag_india)
                     .into(userImageView)
+
+            setOnClickListener {
+                onClick.invoke(user.name, user.thumbImageUrl, user.uid)
+            }
         }
     }
 }

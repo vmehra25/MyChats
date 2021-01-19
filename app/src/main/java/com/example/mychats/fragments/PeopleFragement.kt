@@ -1,5 +1,6 @@
 package com.example.mychats.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mychats.EmptyViewHolder
-import com.example.mychats.R
-import com.example.mychats.UserViewHolder
+import com.example.mychats.*
 import com.example.mychats.models.User
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
@@ -70,7 +69,13 @@ class PeopleFragment : Fragment() {
 
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, model: User) {
                 if(holder is UserViewHolder){
-                    holder.bind(model)
+                    holder.bind(model){ name: String, photo: String, uid: String ->
+                        val intent = Intent(requireContext(), ChatActivity::class.java)
+                                .putExtra(UID, uid)
+                                .putExtra(PHOTO, photo)
+                                .putExtra(NAME, name)
+                        startActivity(intent)
+                    }
                 }else{
                     //Todo - Something
                 }
