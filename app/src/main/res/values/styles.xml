@@ -16,7 +16,7 @@
 
     </style>
 
-    <style name="ChateShapeAppearance">
+    <style name="ChatShapeAppearance">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize"></item>
         <item name="cornerSizeBottomLeft">22dp</item>

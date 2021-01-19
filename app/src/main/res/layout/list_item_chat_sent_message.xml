@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/purple_500"
-        app:shapeAppearance="@style/ChateShapeAppearance"
+        app:shapeAppearance="@style/ChatShapeAppearance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
