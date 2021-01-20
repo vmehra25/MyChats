@@ -2,6 +2,8 @@ package com.example.mychats
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.example.mychats.models.Message
 import com.example.mychats.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -45,6 +47,8 @@ class ChatActivity : AppCompatActivity() {
         EmojiManager.install(GoogleEmojiProvider())
         setContentView(R.layout.activity_chat)
 
+        Log.d("CHATS_ACTIVITY", "Started Activity")
+
         FirebaseFirestore.getInstance().collection("users").document(mCurrentUid).get()
             .addOnSuccessListener {
                 currentUser = it.toObject(User::class.java)!!
@@ -54,6 +58,28 @@ class ChatActivity : AppCompatActivity() {
         nameTvChat.text = friendName
         Picasso.get().load(friendImageUrl).into(userImageViewChat)
 
+        imageSentBtnChat.setOnClickListener {
+            Log.d("CHATS_ACTIVITY", "sendBtnChat.setOnClickListener")
+            messageEtChat.text?.let {
+                if(it.isNotEmpty()){
+                    Log.d("CHATS_ACTIVITY", "Started to send message")
+                    sendMessage(it.toString())
+                    it.clear()
+                }
+            }
+        }
+
+    }
+
+    private fun sendMessage(msg: String) {
+        val id = getMessagesReference(friendUid!!).push().key
+        checkNotNull(id) { "Id is null" }
+        val msgMap = Message(msg, mCurrentUid, id)
+        getMessagesReference(friendUid!!).child(id).setValue(msgMap).addOnSuccessListener {
+            Log.d("CHATS_ACTIVITY", "completed")
+        }.addOnFailureListener {
+            Log.d("CHATS_ACTIVITY", it.localizedMessage)
+        }
     }
 
 

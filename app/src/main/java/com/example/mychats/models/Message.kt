@@ -1,6 +1,7 @@
 package com.example.mychats.models
 
 import android.content.Context
+import com.example.mychats.utils.formatAsHeader
 import java.util.*
 
 interface ChatEvent{
@@ -24,5 +25,5 @@ data class DateHeader(
     override val sentAt: Date,
     val context: Context
 ):ChatEvent{
-
+    val date:String = sentAt.formatAsHeader(context)
 }

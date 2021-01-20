@@ -94,7 +94,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_width="28dp"
                     android:layout_height="28dp">
                 </ImageView>
@@ -116,7 +116,7 @@
                     android:paddingTop="18dp"
                     android:paddingBottom="18dp"
                     android:singleLine="false"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textColorHint="#b6b6b6"
                     >
 
