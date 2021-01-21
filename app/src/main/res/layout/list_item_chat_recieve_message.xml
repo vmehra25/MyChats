@@ -13,45 +13,55 @@
 
     <com.google.android.material.card.MaterialCardView
 
+        android:id="@+id/materialCardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="0dp"
         app:cardBackgroundColor="#f3f3f3"
-        app:shapeAppearance="@style/ChatShapeAppearance"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ChatShapeAppearanceReceivedMessage">
 
         <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:padding="8dp"
             app:alignItems="flex_end"
             app:flexWrap="wrap"
-            app:justifyContent="flex_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            app:justifyContent="flex_end">
 
             <TextView
                 android:id="@+id/messageContent"
-                tools:text="Hello"
-                android:textSize="14sp"
-                android:textColor="#1c1d2a"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="#1c1d2a"
+                android:textSize="14sp"
+                tools:text="Hello" />
 
             <TextView
                 android:id="@+id/messageTime"
-                tools:text="12:20 AM"
-                android:textSize="8sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="#858585"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="8sp"
+                tools:text="12:20 AM" />
 
 
         </com.google.android.flexbox.FlexboxLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/likeBtnChat"
+        android:visibility="visible"
+        android:src="@drawable/ic_heart"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView2"
+        app:tint="@color/Red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
