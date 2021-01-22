@@ -58,6 +58,10 @@ class ChatActivity : AppCompatActivity() {
             emojiPop.toggle()
         }
 
+        toolbarChat.setNavigationOnClickListener {
+            finish()
+        }
+
         chatAdapter = ChatAdapter(messages, mCurrentUid)
         messageRvChat.apply {
             layoutManager = LinearLayoutManager(this@ChatActivity)
